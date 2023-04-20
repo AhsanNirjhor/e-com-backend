@@ -17,3 +17,12 @@ model User{
   password String
   address String?
 }
+
+model Product{
+  id Int @id @default(autoincrement())
+  name String 
+  price Decimal
+  discount Decimal
+  pictureUrl String
+  description String
+}
