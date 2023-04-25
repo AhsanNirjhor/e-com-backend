@@ -25,4 +25,13 @@ model Product{
   discount Decimal
   pictureUrl String
   description String
+  category Category @relation(fields: [categoryId],references: [id])
+  categoryId Int
+}
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  banner String
+  products Product[]
 }
