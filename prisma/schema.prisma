@@ -16,6 +16,8 @@ model User{
   email String @unique
   password String
   address String?
+  orders Order[]
+
 }
 
 model Product{
@@ -28,10 +30,30 @@ model Product{
   category Category @relation(fields: [categoryId],references: [id])
   categoryId Int
 }
+
 model Category{
   id Int @id @default(autoincrement())
   name String
   description String
   banner String
   products Product[]
+}
+
+model Order{
+  user User @relation(fields: [userId], references: [id])
+  address String
+  contact String
+  orderId Int @id @default(autoincrement())
+  discount Decimal
+  deliveryFee Decimal
+  orderItems OrderItem[]
+  userId Int
+}
+
+model OrderItem{
+  itemId Int @id @default(autoincrement())
+  order Order @relation(fields: [orderId],references: [orderId])
+  quantity Int
+  price Decimal
+  orderId Int
 }
