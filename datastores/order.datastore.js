@@ -43,3 +43,13 @@ export const getOrderById = async (id) => {
     prisma.$disconnect();
     return Order;
   };
+  export const getOrderByUserId = async (userId) => {
+    await prisma.$connect();
+    const Order = await prisma.order.findMany({
+      where: {
+        userId,
+      },
+    });
+    prisma.$disconnect();
+    return Order;
+  };
