@@ -33,3 +33,14 @@ export const getUserById = async (id) => {
   prisma.$disconnect();
   return user;
 };
+
+export const getUserByEmail = async (email) => {
+  await prisma.$connect();
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+  prisma.$disconnect();
+  return user;
+}
